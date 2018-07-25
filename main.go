@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"sync"
+	"golang-chat/src/models/chat"
 )
 
 type templateHandler struct {
@@ -14,12 +15,13 @@ type templateHandler struct {
 	templ    *template.Template
 }
 
+
 func main() {
-	r := newRoom()
+	r := chat.NewRoom()
 	http.Handle("/", &templateHandler{filename: "chat.html"})
 	http.Handle("/room", r)
 	// start chatroom
-	go r.run()
+	go r.Run()
 	// start web server
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal("LintenAndServe: ", err)

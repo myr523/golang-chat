@@ -2,7 +2,7 @@
  * クライアントとチャットルームを定義
  */
 
-package main
+package chat
 
 import (
 	"github.com/gorilla/websocket"
