@@ -5,16 +5,16 @@
 package chat
 
 import (
-	"github.com/gorilla/websocket"
 	"fmt"
+	"github.com/gorilla/websocket"
 )
 
 type client struct {
 	// socket for client
 	socket *websocket.Conn
-	// send is channel for sending massage
+	// send is the channel for sending massage
 	send chan []byte
-	// room is chatroom client joined
+	// room is the chatroom client joined
 	room *room
 }
 

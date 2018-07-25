@@ -24,7 +24,6 @@ const (
 
 var upgrader = &websocket.Upgrader{ReadBufferSize: socketBufferSize, WriteBufferSize: messageBufferSize}
 
-
 func NewRoom() *room {
 	return &room{
 		forward: make(chan []byte),
@@ -33,7 +32,6 @@ func NewRoom() *room {
 		clients: make(map[*client]bool),
 	}
 }
-
 
 func (r *room) Run() {
 	for {
