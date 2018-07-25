@@ -4,7 +4,6 @@ import (
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
-	"fmt"
 )
 
 type room struct {
@@ -25,6 +24,7 @@ const (
 
 var upgrader = &websocket.Upgrader{ReadBufferSize: socketBufferSize, WriteBufferSize: messageBufferSize}
 
+
 func newRoom() *room {
 	return &room{
 		forward: make(chan []byte),
@@ -33,6 +33,7 @@ func newRoom() *room {
 		clients: make(map[*client]bool),
 	}
 }
+
 
 func (r *room) run() {
 	for {
@@ -49,7 +50,6 @@ func (r *room) run() {
 			for client := range r.clients {
 				select {
 				case client.send <- msg:
-					fmt.Println(msg)
 					// send message
 				default:
 					// if send channel is closed, delete this client
